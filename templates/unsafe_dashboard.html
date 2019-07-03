@@ -1,0 +1,90 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    {#    <link rel="stylesheet" href="{{ url_for('.static', filename='css/bootstrap.min.css') }}">#}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/dashboard.css') }}">
+    {#    <link rel="stylesheet" href="{{ url_for('.static', filename='css/heroic-features.css') }}">#}
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('unsafe_dashboard') }}">Unsafe Silkroad</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('unsafe_dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('unsafe_account') }}">Account</a></li>
+                    <li><a href="{{ url_for('unsafe_profile') }}">Add item</a></li>
+                    <li><a href="{{ url_for('unsafe_logout') }}">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <br>
+        <!-- Jumbotron Header -->
+        <header class="jumbotron my-4">
+            <h1 class="display-3">Welcome, {{ name }}!</h1>
+            <p class="lead">The rebirth of the Silk Road, we will regain our former glory. The only place you can buy
+                anonymously.</p>
+        </header>
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            {% for item in inventory %}
+                <form method="POST" action="/unsafe_buy">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="80" width="80" src="{{ url_for('.static', filename=item[3]) }}"
+                                 alt="http://placehold.jp/100x100.png">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ item[1] }}</h4>
+                                <h4 class="card-title">{{ item[2] }}</h4>
+                            </div>
+                            {% if id == item[4] %}
+                                <div class="card-footer">
+                                    <a class="btn btn-primary" disabled>Buy!</a>
+                                </div>
+                            {% else %}
+                                <div class="card-footer">
+                                    <input type="hidden" name="ItemId" value={{ item[0] }}>
+                                    <button class="btn btn-primary" type="submit">Buy!</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+            {% endfor %}
+        </div>
+
+       {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('.static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/bootstrap.bundle.min.js') }}"></script>
+{% endblock %}

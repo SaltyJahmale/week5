@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
+
 {% block title %}
     Sign Up
 {% endblock %}
@@ -21,13 +21,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Silkroad</a>
+                <a class="navbar-brand" href="{{ url_for('unsafe_index') }}">Unsafe Silkroad</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    <li class="active"><a href="{{ url_for('unsafe_index') }}">Home</a></li>
+                    <li><a href="{{ url_for('unsafe_login') }}">Login</a></li>
+                    <li><a href="{{ url_for('unsafe_signup') }}">Sign Up</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -35,11 +35,10 @@
 
     <div class="container">
 
-        <form class="form-signin" method="POST" action="/signup">
+        <form class="form-signin" method="POST" action="/unsafe_signup">
             <h2 class="form-signin-heading">Sign Up</h2>
-            {{ form.hidden_tag() }}
-            {{ wtf.form_field(form.username) }}
-            {{ wtf.form_field(form.password) }}
+            <input type="text" name="unsafe_username" placeholder="Username">
+            <input type="password" name="unsafe_password" placeholder="Password">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
         </form>
 

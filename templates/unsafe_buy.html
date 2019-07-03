@@ -1,0 +1,43 @@
+{#{% extends "bootstrap/base.html" %}#}
+{#{% import "bootstrap/wtf.html" as wtf %}#}
+{#{% block title %}#}
+{#    Login#}
+{#{% endblock %}#}
+{##}
+{#{% block styles %}#}
+{#    {{ super() }}#}
+{#    <link rel="stylesheet" href="{{ url_for('.static', filename='css/bootstrap.min.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('.static', filename='css/pricing.css') }}">#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <div class="container">#}
+{##}
+{#        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">#}
+{#            <h1 class="display-4">Buying</h1>#}
+{#            <p class="lead">This action cannot be undone</p>#}
+{#        </div>#}
+{##}
+{#        <div class="container">#}
+{#            <div class="card-deck mb-3 text-center">#}
+{#                <div class="card mb-4 box-shadow">#}
+{#                    <div class="card-header">#}
+{#                        <h4 class="my-0 font-weight-normal">Item</h4>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <h1 class="card-title pricing-card-title">{{ inventory.value }}#}
+{#                            <small class="text-muted">$$</small>#}
+{#                        </h1>#}
+{#                        <ul class="list-unstyled mt-3 mb-4">#}
+{#                            <li>{{ inventory.name }}</li>#}
+{#                            <img src="{{ url_for('.static', filename=inventory.img_location) }}" alt="">#}
+{#                        </ul>#}
+{#                        <button type="button" class="btn btn-lg btn-block btn-primary">Buy</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div> <!-- /container -->#}
+{#{% endblock %}#}
+
+
